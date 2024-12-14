@@ -15,11 +15,11 @@ public class NachrichtService {
 	
 
 private final  OrderService orderService;
+private final SensorsenderService sensorsenderService;
 
-
-public NachrichtService( OrderService orderService)
+public NachrichtService( OrderService orderService,SensorsenderService sensorsenderService)
 {
-	
+	this.sensorsenderService=sensorsenderService;
 	this.orderService=orderService;
 }
 
@@ -32,8 +32,9 @@ public void verarbeiten(String payload) {
 		
 		Float wasserstand = Float.parseFloat(payload);
 		
-		
 		Sensorsender sensorsender= new Sensorsender(payload, wasserstand,LocalDateTime.now(),"Ultra");
+		// Speichere die empfangenen Daten im SensorsenderService
+        sensorsenderService.setData(wasserstand, "Empfangene Nachricht mit Wasserstand: " + wasserstand);
 		
 		if(wasserstand<10) {
 			

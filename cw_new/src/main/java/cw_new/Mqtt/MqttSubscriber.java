@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import cw_new.Services.NachrichtService;
+
 import jakarta.annotation.PostConstruct;
 
 @Service
